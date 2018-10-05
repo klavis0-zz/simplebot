@@ -1,4 +1,5 @@
 import vk_api
+from vk_api.bot_longpoll import VkBotLongPoll
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 
@@ -7,7 +8,7 @@ def main():
     vk_session = vk_api.VkApi(token='')
     vk = vk_session.get_api()
 
-    longpoll = VkLongPoll(vk_session)
+    longpoll = VkBotLongPoll(vk_session, 'group_id')
 
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
